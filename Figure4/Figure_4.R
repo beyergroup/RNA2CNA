@@ -220,15 +220,15 @@ wilcox.test(value~group, subset(Expr_stress_melt,Expr_stress_melt$group %in% c( 
 wilcox.test(value~group, subset(Expr_stress_melt,Expr_stress_melt$group %in% c( "Cells without CNAs","Cells with \nonly deletions")) ) # p-value = 1.671e-05
 
 text<-c("*",'***', paste0('median =\n',med1),paste0('median =\n',med2),paste0('median =\n',med3))
-d=data.frame(x=c(0.99,0.99,1,2,3,1), y=c(24,26,26,24,26,24), vx=c(1.02,2.02,0,0,0,0), vy=c(0,0,-1,-1,-1,-1))
-
+d=data.frame(x=c(0.99,0.99,1,2,3,1), y=c(1.4,1.5,1.5,1.4,1.5,1.4), vx=c(1.02,2.02,0,0,0,0), vy=c(0,0,-0.05,-.05,-.05,-.05))
+summary(Expr_stress_melt$value)
 pdf(paste0('plots/Expresssion_translation_stress_genes_cells_with_CNAs_vs_without_CNAs.pdf'),width = 3.5,height = 3.5)
-p1<-ggplot(Expr_stress_melt)+geom_violin(aes(x=group,y=value))+ylab('Translation stress \ngene expression')+xlab("")+ylim(c(-9,26))+
-  annotate("text",y=24,x=1.5, label = text[1],size=3)+ 
-  annotate("text",y=26,x=2, label = text[2],size=3)+
-  annotate("text", y=20, x=1, label=text[3], size=3)+
-  annotate("text", y=20, x=2, label=text[4], size=3)+
-  annotate("text", y=20, x=3, label=text[5], size=3)+
+p1<-ggplot(Expr_stress_melt)+geom_boxplot(aes(x=group,y=value), outliers = F)+ylab('Translation stress \ngene expression')+xlab("")+ylim(c(-1.5,1.5))+
+  annotate("text",y=1.4,x=1.5, label = text[1],size=3)+ 
+  annotate("text",y=1.5,x=2, label = text[2],size=3)+
+  annotate("text", y=1.1, x=1, label=text[3], size=3)+
+  annotate("text", y=1.1, x=2, label=text[4], size=3)+
+  annotate("text", y=1.1, x=3, label=text[5], size=3)+
   geom_segment(data=d, mapping=aes(x=x, y=y, xend=x+vx, yend=y+vy), size=0.5, color="black") +theme_manuscript()+theme(axis.text = element_text(size=10),
                                                                                                                                                            axis.text.x = element_text(size=10,angle = 45,hjust = 1,vjust = 1)
                                                                                                                                                            ,axis.title = element_text(size=10),
@@ -268,16 +268,16 @@ wilcox.test(value~group, subset(Expr_ribosomal_melt,Expr_ribosomal_melt$group %i
 wilcox.test(value~group, subset(Expr_ribosomal_melt,Expr_ribosomal_melt$group %in% c( "Cells without CNAs","Cells with \nonly deletions")) ) # p-value  < 2.2e-16
 
 text<-c("**",'***', paste0('median =\n',med1),paste0('median =\n',med2),paste0('median =\n',med3))
-d=data.frame(x=c(0.99,0.99,1,2,3,1), y=c(13,14,14,13,14,13), vx=c(1.02,2.02,0,0,0,0), vy=c(0,0,-0.5,-0.5,-0.5,-0.5))
+d=data.frame(x=c(0.99,0.99,1,2,3,1), y=c(2.8,3,3,2.8,3,2.8), vx=c(1.02,2.02,0,0,0,0), vy=c(0,0,-0.1,-0.1,-0.1,-0.1))
 
 
 pdf(paste0('plots/Expresssion_translation_ribosomal_genes_cells_with_CNAs_vs_without_CNAs.pdf'),width = 3.5,height = 3.5)
-p2<-ggplot(Expr_ribosomal_melt)+geom_violin(aes(x=group,y=value))+ylab('Ribosomal protein \ngene expression')+xlab("")+ylim(c(-3.5,14))+
-  annotate("text",y=13,x=1.5, label = text[1],size=3)+ 
-  annotate("text",y=14,x=2, label = text[2],size=3)+
-  annotate("text", y=11, x=1, label=text[3], size=3)+
-  annotate("text", y=11, x=2, label=text[4], size=3)+
-  annotate("text", y=11, x=3, label=text[5], size=3)+
+p2<-ggplot(Expr_ribosomal_melt)+geom_boxplot(aes(x=group,y=value), outliers = F)+ylab('Ribosomal protein \ngene expression')+xlab("")+ylim(c(-2,3))+
+  annotate("text",y=2.8,x=1.5, label = text[1],size=3)+ 
+  annotate("text",y=3,x=2, label = text[2],size=3)+
+  annotate("text", y=2.3, x=1, label=text[3], size=3)+
+  annotate("text", y=2.3, x=2, label=text[4], size=3)+
+  annotate("text", y=2.3, x=3, label=text[5], size=3)+
   geom_segment(data=d, mapping=aes(x=x, y=y, xend=x+vx, yend=y+vy), size=0.5, color="black") +theme_manuscript()+theme(axis.text = element_text(size=10),
                                                                                                                                                           axis.text.x = element_text(size=10,angle = 45,hjust = 1,vjust = 1)
                                                                                                                                                           ,axis.title = element_text(size=10),
